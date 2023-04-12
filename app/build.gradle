@@ -34,6 +34,7 @@ android {
             debuggable true
             Properties localProperties = getLocalProperties()
             buildConfigField "String", "SERVER_URL", "\"${localProperties["DEBUG_URL"]}\""
+
         }
 
         release {

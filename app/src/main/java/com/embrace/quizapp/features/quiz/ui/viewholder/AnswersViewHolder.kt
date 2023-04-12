@@ -20,6 +20,7 @@ class AnswersViewHolder(
                 answer.backgroundTintList =
                     (ContextCompat.getColorStateList(context, R.color.green))
             } else if (item.isCorrect == AnswerStatus.WRONG) {
+
                 answer.backgroundTintList = (ContextCompat.getColorStateList(context, R.color.red))
             }
 

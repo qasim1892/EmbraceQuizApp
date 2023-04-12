@@ -15,7 +15,6 @@ object Utils {
     fun isConnectionOn(context: Context?): Boolean {
         val connectivityManager =
             context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
         val network = connectivityManager.activeNetwork
         val connection = connectivityManager.getNetworkCapabilities(network)
         return connection != null && (connection.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) || connection.hasTransport(

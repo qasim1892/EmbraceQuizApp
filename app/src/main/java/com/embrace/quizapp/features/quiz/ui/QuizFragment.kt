@@ -56,7 +56,7 @@ class QuizFragment : BaseFragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.fetchQuizState.observe(this) {
+        viewModel.fetchQuizState.observe(viewLifecycleOwner) {
             when (it) {
                 is FetchState.Success<*> -> {
                     //Cast the data to non-nullable response
@@ -66,6 +66,8 @@ class QuizFragment : BaseFragment() {
                     }
                 }
                 is FetchState.ErrorApi -> {
+                    //we don't have error response for this api
+                    //So we will just show the logs.
                     handleError(it.error)
                 }
                 is FetchState.Loading -> {
@@ -82,9 +84,13 @@ class QuizFragment : BaseFragment() {
     }
 
     private fun setUpQuestionAndAnswer() {
+        answerOptionsList.clear()
+        val questions = quizResponse.questions
+        setupViews(questions)
+    }
+
+    private fun setupViews(questions: List<QuizResponse.Question>) {
         with(binding) {
-            answerOptionsList.clear()
-            val questions = quizResponse.questions
             val questionsNumber = String.format(
                 resources.getString(R.string.num_question), (count + 1), questions.size
             )
@@ -105,10 +111,10 @@ class QuizFragment : BaseFragment() {
                     )
                 )
             }
-
             answersAdapter = AnswersAdapter { position, answers ->
                 checkAnswer(position, answers)
             }
+            answersAdapter.isClickable = true
             recyclerview.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             recyclerview.adapter = answersAdapter
             answersAdapter.differ.submitList(answerOptionsList)
@@ -117,6 +123,7 @@ class QuizFragment : BaseFragment() {
 
     private fun checkAnswer(position: Int, item: AnswerOptions) {
         countDownTimer.cancel()
+        answersAdapter.isClickable = false
         val questions = quizResponse.questions
         /**
          *  As we have multiple-choices
@@ -217,6 +224,6 @@ class QuizFragment : BaseFragment() {
 
     companion object {
         val TAG: String = Companion::class.java.name
-        const val MILLIS_IN_FUTURE: Long = 11 * 1000 //10 seconds
+        const val MILLIS_IN_FUTURE: Long = 11 * 1000 //10 seconds delay
     }
 }

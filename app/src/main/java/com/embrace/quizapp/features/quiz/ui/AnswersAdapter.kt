@@ -11,6 +11,9 @@ import com.embrace.quizapp.features.quiz.ui.viewholder.AnswersViewHolder
 
 class AnswersAdapter(private val listener: ((Int, AnswerOptions) -> Unit)?) :
     RecyclerView.Adapter<AnswersViewHolder>() {
+
+     var isClickable: Boolean = false
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnswersViewHolder {
         val binding = LayoutItemAnswerBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
@@ -34,6 +37,9 @@ class AnswersAdapter(private val listener: ((Int, AnswerOptions) -> Unit)?) :
         holder.bind(item = items)
         holder.itemView.isEnabled = true
         holder.itemView.setOnClickListener {
+            if(!isClickable){
+                return@setOnClickListener
+            }
             listener?.invoke(position, items)
         }
     }

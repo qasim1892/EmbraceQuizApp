@@ -36,10 +36,17 @@ class GameOverActivity : BaseActivity(), OnClickHandler {
                 startActivity(intent)
             }
             R.id.btn_cancel -> {
-                finishAffinity()
+                finishAfinity()
             }
         }
     }
 
-    override fun onBackPressed() {}
+    private fun finishAfinity() {
+        finishAffinity()
+    }
+
+    override fun onBackPressed() {
+        finishAfinity()
+    }
+
 }
