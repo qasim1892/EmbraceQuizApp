@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Embrace Quiz</string>
+    <string name="highest_score">Highest score: %1$s</string>
+    <string name="start_game">Start Quiz</string>
+    <string name="icon_image">Icon Image</string>
+    <string name="num_question">Question: %1$s of %2$s</string>
+    <string name="your_score">Your score: %1$s </string>
+    <string name="correct_ans">Correct answers: %1$s</string>
+    <string name="try_again">Try again</string>
+    <string name="game_over">Game Over</string>
+    <string name="cancel">Cancel</string>
+    <string name="time_left">%1$s sec</string>
+</resources>

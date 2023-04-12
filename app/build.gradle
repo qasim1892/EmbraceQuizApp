@@ -1,0 +1,95 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+    id "kotlin-parcelize"
+    id "kotlin-kapt"
+}
+apply plugin: "realm-android"
+def getLocalProperties() {
+    Properties props = new Properties()
+    if (file('../local.properties').exists()) {
+        props.load(new FileInputStream(file('../local.properties')))
+    }
+    return props
+}
+
+android {
+    namespace 'com.embrace.quizapp'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.embrace.quizapp"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+            Properties localProperties = getLocalProperties()
+            buildConfigField "String", "SERVER_URL", "\"${localProperties["DEBUG_URL"]}\""
+        }
+
+        release {
+            minifyEnabled false
+            Properties localProperties = getLocalProperties()
+            buildConfigField "String", "SERVER_URL", "\"${localProperties["PRODUCTION_URL"]}\""
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildFeatures {
+        viewBinding true
+        dataBinding = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.10.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.core:core-ktx:1.10.0'
+    implementation 'androidx.core:core-ktx:1.10.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    // Networking
+    implementation "com.squareup.okhttp3:okhttp:5.0.0-alpha.2"
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11'
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    kapt 'com.github.bumptech.glide:compiler:4.15.1'
+
+    // Dependency Injection
+    def koin_version = "2.2.3"
+    implementation "io.insert-koin:koin-androidx-scope:$koin_version"
+    implementation "io.insert-koin:koin-androidx-viewmodel:$koin_version"
+    implementation "io.insert-koin:koin-androidx-ext:$koin_version"
+
+    //Facebook shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    //Splash Screen (Android 12 and above)
+    implementation "androidx.core:core-splashscreen:1.0.0"
+
+}

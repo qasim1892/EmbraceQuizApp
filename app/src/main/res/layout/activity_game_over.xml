@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="clickHandler"
+            type="com.embrace.quizapp.interfaces.OnClickHandler" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_main"
+        tools:context=".features.gameover.GameOverActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/d_20dp"
+                android:layout_marginTop="@dimen/d_10dp"
+                android:gravity="center_horizontal"
+                android:text="@string/game_over"
+                android:textColor="@color/white"
+                android:textSize="@dimen/d_30sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.26999998" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRightAns"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_20dp"
+                android:gravity="center_horizontal"
+                android:text="@string/correct_ans"
+                android:textColor="@color/white"
+                android:textSize="@dimen/d_28sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvScore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/d_20dp"
+                android:layout_marginTop="@dimen/d_15dp"
+                android:gravity="center_horizontal"
+                android:text="@string/your_score"
+                android:textColor="@color/white"
+                android:textSize="@dimen/d_28sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvRightAns" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/d_45dp"
+                android:layout_marginHorizontal="@dimen/d_20dp"
+                android:layout_marginStart="@dimen/d_16dp"
+                android:background="@color/purple_500"
+                android:onClick="@{(v)->clickHandler.onClick(v)}"
+                android:text="@string/cancel"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvRightAns"
+                app:layout_constraintVertical_bias="0.487" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_tryAgain"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/d_45dp"
+                android:background="@color/purple_500"
+                android:onClick="@{(v)->clickHandler.onClick(v)}"
+                android:text="@string/try_again"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.26"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvRightAns"
+                app:layout_constraintVertical_bias="0.487" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

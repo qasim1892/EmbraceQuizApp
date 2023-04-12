@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="highest_Score"
+            type="String" />
+
+        <variable
+            name="clickHandler"
+            type="com.embrace.quizapp.interfaces.OnClickHandler" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".features.home.ui.HomeFragment">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_logo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/d_8dp"
+            android:contentDescription="@string/icon_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.8"
+            app:srcCompat="@drawable/embrace_it" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_high_score"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/d_16dp"
+            android:layout_marginVertical="@dimen/d_16dp"
+            android:text="@{@string/highest_score(highest_Score)}"
+            android:textColor="@color/blue_grey"
+            android:textSize="@dimen/d_24sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/img_logo"
+            app:layout_constraintStart_toStartOf="@+id/img_logo"
+            app:layout_constraintTop_toBottomOf="@+id/img_logo" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_start"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/d_16dp"
+            android:layout_marginBottom="@dimen/d_16dp"
+            android:background="@drawable/answer_bg"
+            android:elevation="@dimen/d_16dp"
+            android:onClick="@{(v)->clickHandler.onClick(v)}"
+            android:padding="@dimen/d_16dp"
+            android:text="@string/start_game"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/d_16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/img_logo"
+            app:layout_constraintStart_toStartOf="@+id/img_logo"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".8" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
